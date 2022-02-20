@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?> <!--xml 버전 명시-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mb.mybatisdemo.mapper.PostMapper">
+    <insert id="createPostAll"
+            parameterType="mb.mybatisdemo.dto.PostDto">
+
+        insert into POST(title, content, title, writer,board)
+        values
+        <foreach collection="list" item="item" separator=",">
+            <!--separator 기준 : , 기준으로 나누기
+            & 하나의 콜렉션에서 , 으로 나뉜 각각 애들을 item으로 부르겠삼-->
+            (#{item.title}, #{item.content}, #{item.writer}, ${item.board})
+        </foreach>
+    </insert>
+
+    <insert id="createPost" parameterType="mb.mybatisdemo.dto.PostDto">
+
+           insert into POST(title, content, title, writer,board)
+           values (#{title}, #{content}, #{writer}, ${board})
+<!--문자열의 경우는 #{dto의변수명} 이거는 따옴표를 추가해줌-->
+<!--board는 조인 테이블을 위한 id 값 , 얘는 따옴표 추가 안함-${}-->
+    </insert>
+
+    <select id="readPost"
+            parameterType="int"
+            resultType="mb.mybatisdemo.dto.PostDto">
+        select * from post where id = ${id}
+    </select><!--하나만 가져오는 경우-->
+
+    <select id="readPostAll"
+            resultType="mb.mybatisdemo.dto.PostDto">
+        select * from post <!--list의 구현체로 반환하게 됨-->
+    </select>
+
+    <update id="updatePost"
+            parameterType="mb.mybatisdemo.dto.PostDto">
+            update post set
+                title=#{title},
+                content=#{content},
+                writer=#{writer},
+                board=${board}
+            where id=${id}
+    </update>
+
+    <delete id="deletePost" parameterType="int">
+        delete from post where id=${id}
+    </delete>
+
+
+    <select id="readPostQuery"
+            parameterType="mb.mybatisdemo.dto.PostDto"
+            resultType="mb.mybatisdemo.dto.PostDto">
+
+        select * from post
+        where title = #{title}
+        <if test="writer!=null">
+            and writer = #{writer}
+        </if>
+    </select>
+
+
+</mapper>
+<mappers>
+<mapper resource="com/dingha/dao/UserMapper.xml"/>
+</mappers>

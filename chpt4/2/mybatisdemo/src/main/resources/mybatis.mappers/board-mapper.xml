@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?> <!--xml 버전 명시-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mb.mybatisdemo.mapper.BoardMapper">
+    <insert id="createBoard"
+            useGeneratedKeys="true"
+            keyProperty="id"
+            parameterType="mb.mybatisdemo.dto.BoardDto"
+            >
+
+        insert into board(name) values (#{name})
+
+    </insert>
+
+</mapper>
