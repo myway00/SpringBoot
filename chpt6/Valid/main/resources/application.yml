@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: test
+
+custom:
+  property:
+    single: custom-property
+    comlist: comma,sparated,list,to,value
+    ncp:
+      id: api-id
+      key: api-key
+      url: https://ncp.com/
+
+# 이는 외부 api 사용할 때 라던지
+#custom.property.single
+#custom.property.comlist
