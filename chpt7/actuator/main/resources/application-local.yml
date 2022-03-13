@@ -1,0 +1,19 @@
+
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/demo_jpa_scheme
+    username : demo_jpa
+    passsword : Qpqpqp0614!
+  jpa:
+    open-in-view: false
+    hibernate:
+     ddl-auto: create
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    database: sql-server

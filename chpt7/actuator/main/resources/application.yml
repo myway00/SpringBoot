@@ -1,0 +1,38 @@
+spring:
+  profiles:
+    active: local
+
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health, info, loggers, shutdown, prometheus
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+      show-components: always
+    info:
+      enabled: true
+    loggers:
+      enabled: true
+    shutdown:
+      enabled: true
+    prometheus:
+      enabled: true
+
+
+#custom:
+#  property:
+#    single: custom-property
+#    comlist: comma,sparated,list,to,value
+#    ncp:
+#      id: api-id
+#      key: api-key
+#      url: https://ncp.com/
+
+
+# 이는 외부 api 사용할 때 라던지
+#custom.property.single
+#custom.property.comlist
